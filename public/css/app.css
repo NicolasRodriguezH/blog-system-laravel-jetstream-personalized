@@ -1051,6 +1051,9 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .-mt-px {
   margin-top: -1px;
 }
@@ -1149,6 +1152,9 @@ select {
 }
 .w-20 {
   width: 5rem;
+}
+.w-36 {
+  width: 9rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1406,10 +1412,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
-.bg-gray-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1425,6 +1427,10 @@ select {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+.object-center {
+  -o-object-position: center;
+     object-position: center;
 }
 .p-2 {
   padding: 0.5rem;
@@ -2273,6 +2279,10 @@ select {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .lg\:block {
