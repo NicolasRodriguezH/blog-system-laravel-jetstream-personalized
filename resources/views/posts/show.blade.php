@@ -7,6 +7,7 @@
             {{$post->extract}}
         </div>
 
+        {{-- Contenido base o (zona post) Lo hacemos responsivo con la declaracion lg para pantallas medianas/grandes y el anterior para pantallas mas pequeñas, (como se debe hacer). --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
             {{-- Contenido principal --}}
@@ -22,9 +23,9 @@
 
             </div>
 
-            {{-- Contenido relacionado --}}
+            {{-- Contenido relacionado - Se usa el aside y un SPAN para el nombre al aldo de la img--}}
             <aside class="">
-                <h1 class="text-2xl font-bold text-gray-600 mb-4">Relacionados con categoria {{$post->category->name}}</h1>
+                <h1 class="text-2xl font-bold text-gray-600 mb-4">Relacionados con {{$post->category->name}}</h1>
 
                 <ul>
                     @foreach ($similares as $similar)

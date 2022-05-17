@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
 {
     public function index() {
+
+        /* Se le asigna a la variable los posts publicados mas recientes con latest y los pagina de a 8 */
         $posts = Post::where('status', 2)->latest('id')->paginate(8);
 
         return view('posts.index', compact('posts'));
@@ -23,5 +26,14 @@ class PostController extends Controller
                             ->get();
         
         return view('posts.show', compact('post', 'similares'));
+    }
+
+    public function category(Category $category) {
+        $posts = Post::where('category_id', $category->id)
+                        ->where('status', 2)
+                        ->latest('id')
+                        ->paginate(6);
+
+        return view('posts.category', compact('posts', 'category'));
     }
 }
