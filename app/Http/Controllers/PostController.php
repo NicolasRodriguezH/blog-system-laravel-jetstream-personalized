@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -35,5 +36,13 @@ class PostController extends Controller
                         ->paginate(6);
 
         return view('posts.category', compact('posts', 'category'));
+    }
+
+    // Metodo para conseguir enlazar los tags con los posts que tengan las mismas y paginado.
+    public function tag(Tag $tag) {
+        $posts = $tag->posts()->where('status', 2)->latest("id")->paginate(3);
+
+        // A esta vista debemos pasarle dos cosas, el listado de posts, y la informacion de la etiqueta
+        return view('posts.tag', compact('posts', 'tag'));
     }
 }

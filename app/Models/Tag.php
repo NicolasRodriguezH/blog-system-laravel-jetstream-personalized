@@ -9,8 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
-    // Relacion muchos a muchos
+    // Relacion muchos a muchos / Bug solucionado, estaba como belongsTo y posts a tags es, muchos a muchos
     public function posts() {
-        return $this->belongsTo(Post::class);
+        return $this->belongsToMany(Post::class);
     }
 }
