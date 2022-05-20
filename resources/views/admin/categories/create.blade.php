@@ -3,7 +3,7 @@
 @section('title', 'Pagina Laravel')
 
 @section('content_header')
-    <h1>Pagina de Administrador Nicolas</h1>
+    <h1>Crear nueva Categoria</h1>
 @stop
 
 @section('content')
