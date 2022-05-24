@@ -7,7 +7,17 @@
 @stop
 
 @section('content')
+
+    @if (session('info'))
+        <div class="alert alert-danger">
+            <strong>{{(session('info'))}}</strong>
+        </div>
+    @endif
+
     <div class="card">
+        <div class="card-header">
+            <a href="{{route('admin.categories.create')}}" class="btn btn-secondary">Crear caregoria</a>
+        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -21,10 +31,19 @@
                 <tbody>
                     @foreach ($categories as $category)
                         <tr>
-                            <th>{{$category->id}}</th>
-                            <th>{{$category->name}}</th>
-                            <th></th>
-                            <th></th>
+                            <td>{{$category->id}}</td>
+                            <td>{{$category->name}}</td>
+                            <td width="10px">
+                                <a href="{{route("admin.categories.edit", $category)}}" class="btn btn-primary btn-sm">Editar</a>
+                            </td>
+                            <td width="10px">
+                                <form action="{{route("admin.categories.destroy", $category)}}" method="POST">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
