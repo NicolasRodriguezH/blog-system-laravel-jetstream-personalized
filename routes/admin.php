@@ -3,10 +3,14 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
 
 // Desde el RouteServiceProv se le asigna el prefijo admin al nombre de la ruta
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
+
+// Resources para CRUDS de Admin
 Route::resource('categories', CategoryController::class)->names('admin.categories');
 Route::resource('tags', TagController::class)->names('admin.tags');
+Route::resource('posts', PostController::class)->names('admin.posts');

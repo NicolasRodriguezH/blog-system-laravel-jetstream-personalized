@@ -56,7 +56,7 @@ class TagController extends Controller
             'color' => 'required'
         ]);
 
-        // Aca no era created si no create (Aveces si instancia solo por las extensiones) revisar
+        // Aca no era created si no create (Aveces se instancia solo por las extensiones) revisar
         $tag = Tag::create($request->all());
         return redirect()->route('admin.tags.edit', compact('tag'))->with('info', 'La etiqueta se creo con exito');
     }
