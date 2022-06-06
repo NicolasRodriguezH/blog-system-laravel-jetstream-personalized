@@ -3,6 +3,9 @@
 @section('title', 'Pagina Laravel')
 
 @section('content_header')
+
+    <a class="btn btn-secondary btn-sm float-right" href="{{route('admin.posts.create')}}">Nuevo Post</a>
+
     <h1>Listado de posts</h1>
 @stop
 
