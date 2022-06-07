@@ -79,6 +79,23 @@
 
                 </div>
 
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="image-wrapper">
+                            <img src="https://cdn.pixabay.com/photo/2020/10/19/18/44/windows-5668674_960_720.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            {!! Form::label('file', 'Imagen que se mostrara en el post') !!}
+                            {!! Form::file('file', ['class' => 'form-control-file']) !!}
+                        </div>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, officia natus! Recusandae natus porro ipsa cum reiciendis eos sunt ex inventore! Fuga a sint dolore odio iste nemo eos officiis.</p>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     {!! Form::label('extract', 'Extracto:') !!}
                     {!! Form::textarea('extract', null, ['class' => 'form-control']) !!}
@@ -105,7 +122,18 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        .image-wrapper img{
+            position:absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%
+        }
+    </style>
 @stop
 
 @section('js')

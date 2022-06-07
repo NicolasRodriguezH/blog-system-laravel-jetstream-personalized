@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    /*  */
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     use HasFactory;
 
     // Relacion uno a muchos inversa
@@ -25,6 +28,6 @@ class Post extends Model
 
     // Relacion uno a uno polimorfica
     public function image() {
-        return $this->morphOne(Image::class, "imageable");
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

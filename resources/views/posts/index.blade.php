@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post) {{-- Este bucle foreach oermite recorrer todos los posts e imprimirlos--}}
                 {{-- <img src="{{Storage::url($post->image->url)}}" alt="">  --}}
-                <article class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2 @endif" style="background-image: url({{Storage::url($post->image->url)}})">
+                <article class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2 @endif" style="background-image: url(@if($post->image) {{Storage::url($post->image->url)}} @else https://cdn.pixabay.com/photo/2020/10/19/18/44/windows-5668674_960_720.jpg @endif)">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div>
                             @foreach ($post->tags as $tag)
