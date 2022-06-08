@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}
+            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
                 {!! Form::hidden('user_id', auth()->user()->id) !!}
 
@@ -82,7 +82,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <div class="image-wrapper">
-                            <img src="https://cdn.pixabay.com/photo/2020/10/19/18/44/windows-5668674_960_720.jpg" alt="">
+                            <img id="picture" src="https://cdn.pixabay.com/photo/2020/10/19/18/44/windows-5668674_960_720.jpg" alt="">
                         </div>
                     </div>
 
@@ -162,6 +162,18 @@
             .catch( error => {
                 console.error( error );
             } );
+
+        // Cambiar imagen
+        document.getElementById("file").addEventListener('change', cambiarImagen);
+
+            function cambiarImagen(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                reader.onload = (event) => {
+                    document.getElementById("picture").setAttribute('src', event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
     </script>
     
 @endsection

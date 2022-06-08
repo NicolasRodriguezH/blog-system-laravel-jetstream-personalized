@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 class ImageFactory extends Factory
 {
     /**
@@ -13,8 +14,13 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
+
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new ("\Smknstd\FakerPicsumImages\FakerPicsumImagesProvider")($faker));
+
         return [
-            "url" => "posts/" . $this->faker->image("public/storage/posts", 640, 480, null, false)
+            'url' => 'posts/' . $faker->image('public/storage/posts', 640, 480, false),
         ];
+
     }
 }
