@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Storage;
 class PostObserver
 {
 
-    public function created(Post $post)
+    public function creating(Post $post)
     {
-        //
+        if (! \App::runningInConsole()) {
+            $post->user_id = auth()->user()->id;
+        }
     }
 
    
