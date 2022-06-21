@@ -3,6 +3,11 @@
 @section('title', 'Pagina Laravel')
 
 @section('content_header')
+
+    @can('admin.categories.create')
+        <a href="{{route('admin.categories.create')}}" class="btn btn-secondary btn-sm float-right">Crear categoria</a>
+    @endcan
+
     <h1>Lista de Categorias</h1>
 @stop
 
@@ -15,9 +20,6 @@
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <a href="{{route('admin.categories.create')}}" class="btn btn-secondary">Crear caregoria</a>
-        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -34,15 +36,19 @@
                             <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td width="10px">
-                                <a href="{{route("admin.categories.edit", $category)}}" class="btn btn-primary btn-sm">Editar</a>
+                                @can('admin.categories.edit')
+                                    <a href="{{route("admin.categories.edit", $category)}}" class="btn btn-primary btn-sm">Editar</a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{route("admin.categories.destroy", $category)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
+                                @can('admin.categories.destroy')
+                                    <form action="{{route("admin.categories.destroy", $category)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
 
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
