@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create', 'store');
+        $this->middleware('can:admin.tags.edit')->only('edit', 'update');
+        $this->middleware('can:admin.tags.destroy')->only('destroy');
+    }
+
     public function index()
     {
 
@@ -21,11 +25,6 @@ class TagController extends Controller
         return view('admin.tags.index', compact('tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $colors = [
@@ -41,12 +40,6 @@ class TagController extends Controller
         return view('admin.tags.create', compact('colors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // Lo mas correcto a la hora de crear REGLAS DE VALIDACION para crear nuevas secciones("tags")
@@ -61,23 +54,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', compact('tag'))->with('info', 'La etiqueta se creo con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        return view('admin.tags.show', compact('tag'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Tag $tag)
     {
 
@@ -94,13 +70,6 @@ class TagController extends Controller
         return view('admin.tags.edit', compact('tag', 'colors'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
@@ -113,12 +82,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', $tag)->with('info', 'La etiqueta se actualizo con exito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Tag $tag)
     {
         $tag->delete();
