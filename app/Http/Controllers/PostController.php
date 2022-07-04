@@ -12,11 +12,19 @@ class PostController extends Controller
 {
     public function index() {
 
-        if (Cache::has('posts')) {
-            $posts = Cache::get('posts');
+        if (request()->page) {
+            $key = 'posts' . request()->page;
+        }else {
+            $key = 'posts';
+        }
+
+        if (Cache::has($key)) {
+            $posts = Cache::get($key);
         } else {
             /* Se le asigna a la variable los posts publicados mas recientes con latest y los pagina de a 8 */
             $posts = Post::where('status', 2)->latest('id')->paginate(8);
+
+            Cache::put($key, $posts);
         }
         
         return view('posts.index', compact('posts'));
